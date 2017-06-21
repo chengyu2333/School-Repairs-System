@@ -15,7 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('新建', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= ListView::widget([
-        'class' => 'list-group',
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'list-group-item'],
         'itemView' => function ($model, $key, $index, $widget) {
