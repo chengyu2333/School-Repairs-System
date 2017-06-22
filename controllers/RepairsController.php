@@ -13,13 +13,14 @@ class RepairsController extends Controller
 {
     public function init()
     {
-//        if (Yii::$app->user->isGuest){
+        if (Yii::$app->user->isGuest){
 //            if (Yii::$app->controller->action->id!='create'){
-//                return $this->goBack('index.php?r=site/login');
+                return $this->goBack('index.php?r=site/login');
 //            }
-//        }
+        }
         parent::init();
     }
+
     public function behaviors()
     {
         return [

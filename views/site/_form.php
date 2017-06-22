@@ -1,5 +1,6 @@
 <?php
 use app\models\Type;
+use app\models\UploadForm;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\captcha\Captcha;
@@ -7,7 +8,7 @@ use yii\captcha\Captcha;
 
 <div class="repairs-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     <?php
     $type = Type::find()->select(['id','type'])->asArray()->all();
     $items = array();
@@ -31,14 +32,9 @@ use yii\captcha\Captcha;
 
     <?= $form->field($model, 'time')->textInput(['value' => date('Y-m-d h:m:s'),'disabled'=>'true']) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'engineer')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
-
-<!--    --><?//= $form->field($model, 'star')->textInput() ?>
-
+    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+    ]) ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? '提交' : '修改', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

@@ -23,33 +23,26 @@ use Yii;
  */
 class Repairs extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+    public $imageFile;
     public $verifyCode;
     public static function tableName()
     {
         return 'repairs';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
             [['type', 'status', 'star'], 'integer'],
             [['describe'], 'required'],
             [['describe'], 'string'],
-            [['title', 'place', 'photo', 'name', 'email', 'engineer', 'comment'], 'string', 'max' => 255],
+            [['title', 'place', 'name', 'email', 'engineer', 'comment'], 'string', 'max' => 255],
             [['time'], 'string', 'max' => 64],
             ['verifyCode', 'captcha'],
+//            [['photo'], 'file', 'skipOnEmpty' => false, 'maxSize' => 1024*1024*10],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
@@ -58,7 +51,7 @@ class Repairs extends \yii\db\ActiveRecord
             'title' => '标题',
             'describe' => '问题描述',
             'place' => '地点',
-            'photo' => '报修照片',
+            'photo' => '照片',
             'name' => '报修人',
             'email' => '报修人邮箱',
             'time' => '报修时间',
@@ -69,11 +62,16 @@ class Repairs extends \yii\db\ActiveRecord
             'verifyCode' => '验证码'
         ];
     }
-
-    /**
-     * @inheritdoc
-     * @return RepairsQuery the active query used by this AR class.
-     */
+//    public function upload()
+//    {
+//        if ($this->validate()||true) {
+//            $this->photo->saveAs('uploads/' . $this->photo->baseName . '.' . $this->photo->extension);
+//            $this->photo = $this->photo->baseName . '.' . $this->photo->extension;
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
     public static function find()
     {
         return new RepairsQuery(get_called_class());

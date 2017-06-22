@@ -37,7 +37,13 @@ class LoginForm extends Model
             }
         }
     }
-
+    public function attributeLabels()
+    {
+        return [
+            'username' => '帐号',
+            'password' => '密码',
+        ];
+    }
     public function login()
     {
         if ($this->validate()) {

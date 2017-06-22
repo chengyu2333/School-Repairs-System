@@ -11,7 +11,7 @@ $this->title = 'My Yii Application';
 
         <p class="lead">只要是校园里的物品都可以提交报修</p>
 
-        <p><a class="btn btn-lg btn-success" href="<?=Yii::$app->urlManager->createUrl('repairs/create')?>">开始报修</a></p>
+        <p><a class="btn btn-lg btn-success" href="<?=Yii::$app->urlManager->createUrl('site/create')?>">开始报修</a></p>
     </div>
 
     <div class="body-content">

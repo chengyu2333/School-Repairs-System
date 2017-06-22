@@ -8,7 +8,9 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\Repairs;
+use yii\web\UploadedFile;
+
 
 class SiteController extends Controller
 {
@@ -80,7 +82,29 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+    public function actionCreate()
+    {
+        $model = new Repairs();
+        if ($model->load(Yii::$app->request->post())) {
 
+//            $model->photo = UploadedFile::getInstance($model, 'photo');
+//            var_dump($model->upload());
+
+            if ($model->save()){
+                return $this->render('success');
+            }else{
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+//                var_dump($model->getErrors());
+//                return $this->render('error');
+            }
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
     public function actionContact()
     {
         $model = new ContactForm();
