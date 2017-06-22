@@ -87,17 +87,13 @@ class SiteController extends Controller
         $model = new Repairs();
         if ($model->load(Yii::$app->request->post())) {
 
-//            $model->photo = UploadedFile::getInstance($model, 'photo');
-//            var_dump($model->upload());
-
+            $model->photo = UploadedFile::getInstance($model, 'photo');
             if ($model->save()){
                 return $this->render('success');
             }else{
                 return $this->render('create', [
                     'model' => $model,
                 ]);
-//                var_dump($model->getErrors());
-//                return $this->render('error');
             }
         } else {
             return $this->render('create', [
@@ -110,7 +106,6 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
-
             return $this->refresh();
         }
         return $this->render('contact', [

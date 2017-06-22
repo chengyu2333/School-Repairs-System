@@ -7,13 +7,14 @@ use yii\captcha\Captcha;
 
 <div class="repairs-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     <?php
     $type = Type::find()->select(['id','type'])->asArray()->all();
     $items = array();
     foreach ($type as $i){
         $items[$i['id']] = $i['type'];
     }
+    $model->status=0;
     ?>
     <?= $form->field($model,'type')->dropDownList($items,['required' => true])?>
 
@@ -24,6 +25,7 @@ use yii\captcha\Captcha;
     <?= $form->field($model, 'place')->textInput(['required' => true]) ?>
 
     <?= $form->field($model, 'photo')->fileInput() ?>
+    <img style="height: 400px;width: 400px：" src="uploads/<?= $model->photo?>">
 
     <?= $form->field($model, 'name')->textInput(['required' => true]) ?>
 
@@ -31,14 +33,17 @@ use yii\captcha\Captcha;
 
     <?= $form->field($model, 'time')->textInput(['value' => date('Y-m-d h:m:s'),'disabled'=>'true']) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model,'status')->radioList([0=>'待处理',1=>'完成',-1=>'失败'])?>
 
-    <?= $form->field($model, 'engineer')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'engineer')->textInput() ?>
 
-    <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'comment')->textInput() ?>
 
 <!--    --><?//= $form->field($model, 'star')->textInput() ?>
-
+    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+    ]) ?>
+    
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? '提交' : '修改', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

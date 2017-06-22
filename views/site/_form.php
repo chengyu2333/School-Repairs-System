@@ -1,6 +1,5 @@
 <?php
 use app\models\Type;
-use app\models\UploadForm;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\captcha\Captcha;
@@ -23,6 +22,7 @@ use yii\captcha\Captcha;
     <?= $form->field($model, 'describe')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'place')->textInput(['required' => true]) ?>
+
 
     <?= $form->field($model, 'photo')->fileInput() ?>
 

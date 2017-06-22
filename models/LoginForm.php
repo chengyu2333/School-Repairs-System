@@ -42,6 +42,7 @@ class LoginForm extends Model
         return [
             'username' => '帐号',
             'password' => '密码',
+            'rememberMe' => '自动登录',
         ];
     }
     public function login()

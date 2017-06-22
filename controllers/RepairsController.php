@@ -14,9 +14,7 @@ class RepairsController extends Controller
     public function init()
     {
         if (Yii::$app->user->isGuest){
-//            if (Yii::$app->controller->action->id!='create'){
-                return $this->goBack('index.php?r=site/login');
-//            }
+            return $this->goBack('index.php?r=site/login');
         }
         parent::init();
     }
@@ -49,7 +47,7 @@ class RepairsController extends Controller
     {
         $searchModel = new RepairsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

@@ -39,7 +39,7 @@ class Repairs extends \yii\db\ActiveRecord
             [['title', 'place', 'name', 'email', 'engineer', 'comment'], 'string', 'max' => 255],
             [['time'], 'string', 'max' => 64],
             ['verifyCode', 'captcha'],
-//            [['photo'], 'file', 'skipOnEmpty' => false, 'maxSize' => 1024*1024*10],
+            [['photo'], 'file', 'skipOnEmpty' => false, 'maxSize' => 1024*1024*10],
         ];
     }
 
@@ -62,16 +62,10 @@ class Repairs extends \yii\db\ActiveRecord
             'verifyCode' => '验证码'
         ];
     }
-//    public function upload()
-//    {
-//        if ($this->validate()||true) {
-//            $this->photo->saveAs('uploads/' . $this->photo->baseName . '.' . $this->photo->extension);
-//            $this->photo = $this->photo->baseName . '.' . $this->photo->extension;
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
+    public function upload()
+    {
+        $this->photo->saveAs('uploads/' . $this->photo->baseName. '.' . $this->photo->extension);
+    }
     public static function find()
     {
         return new RepairsQuery(get_called_class());

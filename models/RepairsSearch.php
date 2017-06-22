@@ -47,6 +47,7 @@ class RepairsSearch extends Repairs
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => ['pageSize' => 10,],
         ]);
 
         $this->load($params);
