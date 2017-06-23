@@ -31,10 +31,11 @@ class LoginForm extends Model
 
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, '用户名或密码错误');
-            }
-            if ($user->getPower()<1){
+                
+            }else if ($user->getPower()<1){
                 $this->addError($attribute, '您的帐号暂时无法登录');
             }
+            
         }
     }
     public function attributeLabels()

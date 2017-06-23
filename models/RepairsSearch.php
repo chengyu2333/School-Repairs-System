@@ -12,9 +12,6 @@ use app\models\Repairs;
  */
 class RepairsSearch extends Repairs
 {
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -23,22 +20,12 @@ class RepairsSearch extends Repairs
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
     public function search($params)
     {
         $query = Repairs::find();
